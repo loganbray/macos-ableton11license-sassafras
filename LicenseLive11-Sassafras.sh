@@ -1,5 +1,15 @@
 #!/bin/zsh
 
+# checks if ableton live 11 suite is installed
+CheckAbletonInstallation() {
+    if [ ! -d "/Applications/Ableton Live 11 Suite.app" ]; then
+        echo "Ableton Live 11 Suite not installed; exiting"
+        exit 1
+    else 
+        echo "Ableton Live 11 Suite installed; continuing"
+    fi
+}
+
 # checks the version of existing ableton live folder
 CheckFolderVersion () {
     if [ -d "/Library/Preferences/Ableton/Live $Ableton11Version" ]; then
@@ -37,6 +47,7 @@ CheckUserLicenses() {
 done
 }
 
+CheckAbletonInstallation
 # get the ableton 11 folder
 Ableton11Version=$(defaults read "/Applications/Ableton Live 11 Suite.app/Contents/Info.plist" CFBundleShortVersionString | cut -d' ' -f1)
 
