@@ -1,17 +1,5 @@
 #!/bin/zsh
 
-# get the ableton 11 folder
-Ableton11Version=$(defaults read "/Applications/Ableton Live 11 Suite.app/Contents/Info.plist" CFBundleShortVersionString | cut -d' ' -f1)
-
-# check if the root ableton folder exists
-if [ -d "/Library/Preferences/Ableton" ]; then
-    echo "Ableton Folder exists"
-else 
-    mkdir "/Library/Preferences/Ableton"
-    echo "Created Ableton Folder"
-fi
-CheckFolderVersion
-
 # checks the version of existing ableton live folder
 CheckFolderVersion () {
     if [ -d "/Library/Preferences/Ableton/Live $Ableton11Version" ]; then
@@ -48,3 +36,17 @@ CheckUserLicenses() {
         fi
 done
 }
+
+# get the ableton 11 folder
+Ableton11Version=$(defaults read "/Applications/Ableton Live 11 Suite.app/Contents/Info.plist" CFBundleShortVersionString | cut -d' ' -f1)
+
+# check if the root ableton folder exists
+if [ -d "/Library/Preferences/Ableton" ]; then
+    echo "Ableton Folder exists"
+else 
+    mkdir "/Library/Preferences/Ableton"
+    echo "Created Ableton Folder"
+fi
+CheckFolderVersion
+
+exit 0
